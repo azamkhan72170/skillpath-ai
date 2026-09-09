@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SkillPath AI - Smart career and skill planning platform">
+  <title>SkillPath AI | Build Your Future</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0b1020;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .navbar {
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(11, 16, 32, 0.95);
+      border-bottom: 1px solid #26304a;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-container {
+      max-width: 1150px;
+      margin: auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: #7c9cff;
+    }
+
+    .logo span {
+      color: #ffffff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: #7c9cff;
+    }
+
+    .hero {
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      padding: 70px 20px;
+      background:
+        radial-gradient(circle at top right, rgba(124, 156, 255, 0.22), transparent 35%),
+        radial-gradient(circle at bottom left, rgba(80, 200, 180, 0.12), transparent 30%);
+    }
+
+    .hero-container {
+      max-width: 1150px;
+      width: 100%;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 7px 13px;
+      border: 1px solid #334269;
+      border-radius: 30px;
+      color: #aebeff;
+      background: #121a31;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: #7c9cff;
+    }
+
+    .hero p {
+      color: #aeb9cc;
+      max-width: 650px;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 10px;
+      padding: 13px 20px;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .btn-primary {
+      background: #7c9cff;
+      color: #07101f;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #ffffff;
+      border: 1px solid #34415f;
+    }
+
+    .btn-secondary:hover {
+      background: #151e35;
+    }
+
+    .hero-card {
+      background: #11182b;
+      border: 1px solid #2b3858;
+      border-radius: 22px;
+      padding: 25px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-card h3 {
+      margin-bottom: 20px;
+    }
+
+    .progress-box {
+      margin-bottom: 18px;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 7px;
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    .progress {
+      height: 9px;
+      background: #27314a;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .progress div {
+      height: 100%;
+      background: #7c9cff;
+      border-radius: 20px;
+    }
+
+    section {
+      padding: 80px 20px;
+    }
+
+    .container {
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: #9ba8bd;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature {
+      background: #11182b;
+      border: 1px solid #273453;
+      border-radius: 16px;
+      padding: 28px;
+      transition: 0.25s;
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+      border-color: #7c9cff;
+    }
+
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .feature h3 {
+      margin-bottom: 10px;
+    }
+
+    .feature p {
+      color: #9ba8bd;
+      font-size: 14px;
+    }
+
+    .roadmap {
+      background: #0e1527;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .step {
+      background: #11182b;
+      border: 1px solid #273453;
+      border-radius: 15px;
+      padding: 22px;
+    }
+
+    .step-number {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #7c9cff;
+      color: #07101f;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .step p {
+      color: #9ba8bd;
+      font-size: 14px;
+      margin-top: 7px;
+    }
+
+    .career {
+      text-align: center;
+    }
+
+    .career-box {
+      max-width: 750px;
+      margin: auto;
+      background: linear-gradient(135deg, #151f38, #10172a);
+      border: 1px solid #334269;
+      border-radius: 22px;
+      padding: 45px 25px;
+    }
+
+    .career-box h2 {
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
+
+    .career-box p {
+      color: #aab5c9;
+      margin-bottom: 25px;
+    }
+
+    .footer {
+      border-top: 1px solid #26304a;
+      padding: 25px 20px;
+      text-align: center;
+      color: #77849b;
+      font-size: 13px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(0, 0, 0, 0.75);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 450px;
+      background: #11182b;
+      border: 1px solid #334269;
+      border-radius: 18px;
+      padding: 25px;
+    }
+
+    .modal-box h2 {
+      margin-bottom: 15px;
+    }
+
+    .modal-box input,
+    .modal-box select {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      background: #0b1020;
+      color: #ffffff;
+      border: 1px solid #33415f;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-container {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 55px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .steps {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 45px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      section {
+        padding: 60px 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">SkillPath<span> AI</span></a>
+
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#career">Career</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <section class="hero">
+      <div class="hero-container">
+
+        <div>
+          <div class="badge">AI-Powered Career Platform</div>
+
+          <h1>Build Your <span>Future.</span></h1>
+
+          <p>
+            SkillPath AI helps students discover skills, build career roadmaps,
+            prepare for jobs and track their progress in one place.
+          </p>
+
+          <div class="buttons">
+            <button class="btn btn-primary" onclick="openPlanner()">
+              Create My Roadmap
+            </button>
+
+            <a href="#features" class="btn btn-secondary">
+              Explore Features
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <h3>Your Skill Progress</h3>
+
+          <div class="progress-box">
+            <div class="progress-info">
+              <span>HTML & CSS</span>
+              <span>85%</span>
+            </div>
+            <div class="progress">
+              <div style="width:85%"></div>
+            </div>
+          </div>
+
+          <div class="progress-box">
+            <div class="progress-info">
+              <span>JavaScript</span>
+              <span>65%</span>
+            </div>
+            <div class="progress">
+              <div style="width:65%"></div>
+            </div>
+          </div>
+
+          <div class="progress-box">
+            <div class="progress-info">
+              <span>Python</span>
+              <span>45%</span>
+            </div>
+            <div class="progress">
+              <div style="width:45%"></div>
+            </div>
+          </div>
+
+          <div class="progress-box">
+            <div class="progress-info">
+              <span>Data Analytics</span>
+              <span>30%</span>
+            </div>
+            <div class="progress">
+              <div style="width:30%"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Everything You Need</h2>
+          <p>One platform to organize your career journey.</p>
+        </div>
+
+        <div class="features">
+
+          <div class="feature">
+            <div class="feature-icon">🎯</div>
+            <h3>Career Roadmaps</h3>
+            <p>
+              Follow a structured learning path based on the career you want.
+            </p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">💻</div>
+            <h3>Skill Tracker</h3>
+            <p>
+              Track your technical skills and understand what you should learn next.
+            </p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">📄</div>
+            <h3>Resume Builder</h3>
+            <p>
+              Create a clean student resume and highlight your projects and skills.
+            </p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">💼</div>
+            <h3>Job Readiness</h3>
+            <p>
+              Check whether your current skills match your target job.
+            </p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">🤖</div>
+            <h3>AI Career Assistant</h3>
+            <p>
+              Get career guidance and suggestions as you build your roadmap.
+            </p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">📊</div>
+            <h3>Progress Dashboard</h3>
+            <p>
+              See your learning progress and stay motivated toward your goals.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="roadmap" class="roadmap">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Simple Career Roadmap</h2>
+          <p>Start small. Learn consistently. Build real projects.</p>
+        </div>
+
+        <div class="steps">
+
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Choose Goal</h3>
+            <p>Select the career or technology you want to pursue.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Learn Skills</h3>
+            <p>Learn the important skills required for your target career.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Build Projects</h3>
+            <p>Turn your knowledge into practical projects for your portfolio.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">4</div>
+            <h3>Get Job Ready</h3>
+            <p>Prepare your resume, interview skills and job applications.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="career" class="career">
+      <div class="container">
+
+        <div class="career-box">
+          <h2>Ready to Start?</h2>
+          <p>
+            Create your first career roadmap and start planning your next step.
+          </p>
+
+          <button class="btn btn-primary" onclick="openPlanner()">
+            Start My Journey
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 SkillPath AI. Built for students and future professionals.</p>
+  </footer>
+
+  <div class="modal" id="plannerModal">
+    <div class="modal-box">
+
+      <h2>Create Your Roadmap</h2>
+
+      <input
+        type="text"
+        id="studentName"
+        placeholder="Your name"
+        autocomplete="name"
+      >
+
+      <select id="careerGoal">
+        <option value="">Choose your career goal</option>
+        <option value="Web Developer">Web Developer</option>
+        <option value="Software Developer">Software Developer</option>
+        <option value="Data Analyst">Data Analyst</option>
+        <option value="AI/ML Engineer">AI/ML Engineer</option>
+        <option value="Cybersecurity">Cybersecurity</option>
+      </select>
+
+      <div class="modal-buttons">
+        <button class="btn btn-primary" onclick="createRoadmap()">
+          Create
+        </button>
+
+        <button class="btn btn-secondary" onclick="closePlanner()">
+          Cancel
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function openPlanner() {
+      document.getElementById("plannerModal").classList.add("active");
+    }
+
+    function closePlanner() {
+      document.getElementById("plannerModal").classList.remove("active");
+    }
+
+    function createRoadmap() {
+      const name = document.getElementById("studentName").value.trim();
+      const goal = document.getElementById("careerGoal").value;
+
+      if (!name || !goal) {
+        alert("Please enter your name and choose a career goal.");
+        return;
+      }
+
+      alert(
+        "Great, " + name + "! Your " + goal +
+        " roadmap is ready to build. 🚀"
+      );
+
+      closePlanner();
+    }
+
+    window.addEventListener("click", function(event) {
+      const modal = document.getElementById("plannerModal");
+
+      if (event.target === modal) {
+        closePlanner();
+      }
+    });
+  </script>
+
+</body>
+</html>
