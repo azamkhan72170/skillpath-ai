@@ -686,6 +686,73 @@
       }
     });
   </script>
+<section id="career-tool" style="padding:40px 20px;max-width:900px;margin:auto">
+  <h2>Choose Your Career Path</h2>
+  <p>Select your goal and get a simple learning roadmap.</p>
 
+  <select id="careerSelect" style="padding:12px;width:100%;max-width:400px">
+    <option value="">Select Career</option>
+    <option value="Data Analyst">Data Analyst</option>
+    <option value="Web Developer">Web Developer</option>
+    <option value="Python Developer">Python Developer</option>
+    <option value="Software Engineer">Software Engineer</option>
+  </select>
+
+  <button onclick="showRoadmap()" style="padding:12px 20px;margin-top:15px">
+    Show Roadmap
+  </button>
+
+  <div id="roadmapResult" style="margin-top:25px"></div>
+</section>
+
+<script>
+function showRoadmap() {
+  const career = document.getElementById("careerSelect").value;
+  const result = document.getElementById("roadmapResult");
+
+  const roadmaps = {
+    "Data Analyst": [
+      "Learn Excel",
+      "Learn SQL",
+      "Learn Python",
+      "Practice Power BI",
+      "Create 3 data analysis projects"
+    ],
+    "Web Developer": [
+      "Learn HTML",
+      "Learn CSS",
+      "Learn JavaScript",
+      "Learn Git and GitHub",
+      "Create responsive websites"
+    ],
+    "Python Developer": [
+      "Learn Python basics",
+      "Practice functions and OOP",
+      "Learn SQL",
+      "Learn Flask or Django",
+      "Create Python projects"
+    ],
+    "Software Engineer": [
+      "Learn C or Java",
+      "Study Data Structures",
+      "Study Algorithms",
+      "Learn Git and GitHub",
+      "Practice coding problems"
+    ]
+  };
+
+  if (!career) {
+    result.innerHTML = "<p>Please select a career first.</p>";
+    return;
+  }
+
+  result.innerHTML = `
+    <h3>Your ${career} Roadmap</h3>
+    <ol>
+      ${roadmaps[career].map(step => `<li>${step}</li>`).join("")}
+    </ol>
+  `;
+}
+</script>
 </body>
 </html>
