@@ -596,43 +596,15 @@
     </section>
     <section id="skill-tracker" style="padding:40px 20px;max-width:900px;margin:auto">
   <h2>Skill Progress Tracker</h2>
-  <p>Tick the skills you have completed.</p>
+  <p>Select your career and track your skills.</p>
 
-  <label>
-    <input type="checkbox" class="skill-check">
-    HTML
-  </label>
-  <br>
-
-  <label>
-    <input type="checkbox" class="skill-check">
-    CSS
-  </label>
-  <br>
-
-  <label>
-    <input type="checkbox" class="skill-check">
-    JavaScript
-  </label>
-  <br>
-
-  <label>
-    <input type="checkbox" class="skill-check">
-    Python
-  </label>
-  <br>
-
-  <label>
-    <input type="checkbox" class="skill-check">
-    SQL
-  </label>
+  <div id="dynamicSkills"></div>
 
   <h3>Progress: <span id="progressText">0%</span></h3>
 
   <progress id="progressBar" value="0" max="100" style="width:100%"></progress>
     </section>
-
-    <section id="career" class="career">
+  <section id="career" class="career">
       <div class="container">
 
         <div class="career-box">
@@ -798,35 +770,99 @@ function showRoadmap() {
     document.getElementById("careerSelect").value = savedCareer;
   }
 };
-  const skillChecks = document.querySelectorAll(".skill-check");
-const progressText = document.getElementById("progressText");
-const progressBar = document.getElementById("progressBar");
+  const careerSkills = {
+  "Data Analyst": [
+    "Excel",
+    "SQL",
+    "Python",
+    "Power BI",
+    "Statistics"
+  ],
 
-function updateSkillProgress() {
+  "Web Developer": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Git and GitHub",
+    "Responsive Design"
+  ],
+
+  "Python Developer": [
+    "Python Basics",
+    "Functions and OOP",
+    "SQL",
+    "Flask or Django",
+    "Python Projects"
+  ],
+
+  "Software Engineer": [
+    "C or Java",
+    "Data Structures",
+    "Algorithms",
+    "Git and GitHub",
+    "Coding Practice"
+  ]
+};
+
+function loadCareerSkills() {
+  const career = document.getElementById("careerSelect").value;
+  const skillsBox = document.getElementById("dynamicSkills");
+
+  skillsBox.innerHTML = "";
+
+  if (!career || !careerSkills[career]) {
+    skillsBox.innerHTML = "<p>Please select a career first.</p>";
+    document.getElementById("progressText").textContent = "0%";
+    document.getElementById("progressBar").value = 0;
+    return;
+  }
+
+  careerSkills[career].forEach((skill) => {
+    const label = document.createElement("label");
+
+    label.style.display = "block";
+    label.style.margin = "12px 0";
+
+    label.innerHTML = `
+      <input type="checkbox" class="dynamic-skill">
+      ${skill}
+    `;
+
+    skillsBox.appendChild(label);
+  });
+
+  const checkboxes = document.querySelectorAll(".dynamic-skill");
+
+  checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener("change", updateCareerProgress);
+  });
+
+  updateCareerProgress();
+}
+
+function updateCareerProgress() {
+  const checkboxes = document.querySelectorAll(".dynamic-skill");
   let completed = 0;
 
-  skillChecks.forEach((skill, index) => {
-    localStorage.setItem("skill" + index, skill.checked);
-
-    if (skill.checked) {
+  checkboxes.forEach((checkbox) => {
+    if (checkbox.checked) {
       completed++;
     }
   });
 
-  const progress = Math.round(
-    (completed / skillChecks.length) * 100
-  );
+  const progress = checkboxes.length
+    ? Math.round((completed / checkboxes.length) * 100)
+    : 0;
 
-  progressText.textContent = progress + "%";
-  progressBar.value = progress;
+  document.getElementById("progressText").textContent = progress + "%";
+  document.getElementById("progressBar").value = progress;
 }
 
-skillChecks.forEach((skill, index) => {
-  skill.checked = localStorage.getItem("skill" + index) === "true";
-  skill.addEventListener("change", updateSkillProgress);
-});
+document
+  .getElementById("careerSelect")
+  .addEventListener("change", loadCareerSkills);
 
-updateSkillProgress();
+loadCareerSkills();
 </script>
 </body>
 </html>
