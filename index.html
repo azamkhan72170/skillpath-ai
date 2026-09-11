@@ -594,6 +594,43 @@
         </div>
       </div>
     </section>
+    <section id="skill-tracker" style="padding:40px 20px;max-width:900px;margin:auto">
+  <h2>Skill Progress Tracker</h2>
+  <p>Tick the skills you have completed.</p>
+
+  <label>
+    <input type="checkbox" class="skill-check">
+    HTML
+  </label>
+  <br>
+
+  <label>
+    <input type="checkbox" class="skill-check">
+    CSS
+  </label>
+  <br>
+
+  <label>
+    <input type="checkbox" class="skill-check">
+    JavaScript
+  </label>
+  <br>
+
+  <label>
+    <input type="checkbox" class="skill-check">
+    Python
+  </label>
+  <br>
+
+  <label>
+    <input type="checkbox" class="skill-check">
+    SQL
+  </label>
+
+  <h3>Progress: <span id="progressText">0%</span></h3>
+
+  <progress id="progressBar" value="0" max="100" style="width:100%"></progress>
+    </section>
 
     <section id="career" class="career">
       <div class="container">
@@ -761,6 +798,35 @@ function showRoadmap() {
     document.getElementById("careerSelect").value = savedCareer;
   }
 };
+  const skillChecks = document.querySelectorAll(".skill-check");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function updateSkillProgress() {
+  let completed = 0;
+
+  skillChecks.forEach((skill, index) => {
+    localStorage.setItem("skill" + index, skill.checked);
+
+    if (skill.checked) {
+      completed++;
+    }
+  });
+
+  const progress = Math.round(
+    (completed / skillChecks.length) * 100
+  );
+
+  progressText.textContent = progress + "%";
+  progressBar.value = progress;
+}
+
+skillChecks.forEach((skill, index) => {
+  skill.checked = localStorage.getItem("skill" + index) === "true";
+  skill.addEventListener("change", updateSkillProgress);
+});
+
+updateSkillProgress();
 </script>
 </body>
 </html>
