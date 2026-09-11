@@ -863,6 +863,16 @@ document
   .addEventListener("change", loadCareerSkills);
 
 loadCareerSkills();
+  document.querySelectorAll('.dynamic-skill').forEach(function (checkbox, index) {
+  const career = document.getElementById('careerSelect').value;
+  const key = career + '_skill_' + index;
+
+  checkbox.checked = localStorage.getItem(key) === 'true';
+
+  checkbox.addEventListener('change', function () {
+    localStorage.setItem(key, checkbox.checked);
+  });
+});
 </script>
 </body>
 </html>
