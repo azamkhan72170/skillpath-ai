@@ -708,6 +708,7 @@
 <script>
 function showRoadmap() {
   const career = document.getElementById("careerSelect").value;
+  localStorage.setItem("selectedCareer", career);
   const result = document.getElementById("roadmapResult");
 
   const roadmaps = {
@@ -753,6 +754,13 @@ function showRoadmap() {
     </ol>
   `;
 }
+  window.onload = function () {
+  const savedCareer = localStorage.getItem("selectedCareer");
+
+  if (savedCareer) {
+    document.getElementById("careerSelect").value = savedCareer;
+  }
+};
 </script>
 </body>
 </html>
